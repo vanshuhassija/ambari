@@ -31,6 +31,7 @@ export const encryptData = (data: string): string => {
         }).join('');
     }
     //Need to change it to encrypted value once local storage encrypting is merged
+    console.log("Encrypted Value",encryptedValue)
     return data
 }
 export const getFromLocalStorage = (key: string): string => {
@@ -71,6 +72,7 @@ export const decryptData = (data: string): string => {
             }
         }).join('');
     }
+    console.log("Decrypted Value",decryptedValue)
     //Need to change it to encrypted value once local storage encrypting is merged
     return data
 }

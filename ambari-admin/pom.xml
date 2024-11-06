@@ -85,6 +85,41 @@
               <arguments>install --unsafe-perm</arguments>
             </configuration>
           </execution>
+          <execution>
+            <id>install-node-and-npm-react</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>install-node-and-npm</goal>
+            </goals>
+            <configuration>
+              <nodeVersion>v20.11.0</nodeVersion>
+              <npmVersion>10.8.3</npmVersion>
+              <workingDirectory>src/main/resources/ui/ambari-admin/</workingDirectory>
+              <npmInheritsProxyConfigFromMaven>false</npmInheritsProxyConfigFromMaven>
+            </configuration>
+          </execution>
+          <execution>
+            <id>npm-install-react</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <configuration>
+              <arguments>install</arguments>
+              <workingDirectory>src/main/resources/ui/ambari-admin/</workingDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>npm-run-build-react</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>npm</goal>
+            </goals>
+            <configuration>
+              <arguments>run build</arguments>
+              <workingDirectory>src/main/resources/ui/ambari-admin/</workingDirectory>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>
@@ -237,10 +272,33 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/classes/angular</outputDirectory>
+                            <outputDirectory>${project.build.directory}/classes/classic</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/resources/ui/admin-web/dist/angular</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+        </plugin>
+        <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-react-resources</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/classes/latest</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/ui/ambari-admin/dist</directory>
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>
