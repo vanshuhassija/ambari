@@ -35,7 +35,7 @@ export enum SideItemLabels {
   USERS = "Users",
   VIEWS = "Views",
 }
-// START GENAI@CHATGPT4
+
 const getSideItemList = (clusterExists: boolean): SideItem[] => {
   const baseList: SideItem[] = [...SideItemList];
 
